@@ -1,0 +1,17 @@
+{
+	"name": "Create Views Gold",
+	"properties": {
+		"content": {
+			"query": "-- create view calenderr\n\ncreate view gold.calendar\nas \n(select * from OPENROWSET(bulk 'https://awprojectstorageaccount.blob.core.windows.net/silver/AdventureWorks_Calendar/', \nformat = 'parquet')as quer1) \n\n-- customers view \ncreate view gold.Customers\nas \n(select * from OPENROWSET(bulk 'https://awprojectstorageaccount.blob.core.windows.net/silver/AdventureWorks_Customers/', \nformat = 'parquet')as quer1) \n\n--product view \ncreate view gold.Product\nas \n(select * from OPENROWSET(bulk 'https://awprojectstorageaccount.blob.core.windows.net/silver/AdventureWorks_Product/', \nformat = 'parquet')as quer1) \n\n\n\n-- return view\ncreate view gold.AWReturn\nas \n(select * from OPENROWSET(bulk 'https://awprojectstorageaccount.blob.core.windows.net/silver/AdventureWorks_Return/', \nformat = 'parquet')as quer1) \n-- sales view \ncreate view gold.Sales\nas \n(select * from OPENROWSET(bulk 'https://awprojectstorageaccount.blob.core.windows.net/silver/AdventureWorks_Sales/', \nformat = 'parquet')as quer1) \n\n\n-- sub cat view \n\ncreate view gold.Subcategory\nas \n(select * from OPENROWSET(bulk 'https://awprojectstorageaccount.blob.core.windows.net/silver/AdventureWorks_Subcategory/', \nformat = 'parquet')as quer1) \n\n\n\n-- territory view \ncreate view gold.Territories\nas \n(select * from OPENROWSET(bulk 'https://awprojectstorageaccount.blob.core.windows.net/silver/AdventureWorks_Territories/', \nformat = 'parquet')as quer1) ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "awdatabase",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

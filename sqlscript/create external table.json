@@ -1,0 +1,17 @@
+{
+	"name": "create external table",
+	"properties": {
+		"content": {
+			"query": "--CREATE MASTER KEY ENCRYPTION BY PASSWORD ='Suhas@999'--\n-- you need to create credentials , pre req for it is crating a master key for db\ncreate database scoped CREDENTIAL cred_suhas\nwith \nIDENTITY = 'managed identity'  -- you can find these in the documentatition in microsoft website  \n-- 2nd step is creating an external data source 1-to read from silver , 1 - for gold to push into it \ncreate external data source source_silver\nwith (  \n    location='https://awprojectstorageaccount.blob.core.windows.net/silver',\n    CREDENTIAL = cred_suhas\n    )\n\n    create external data source source_gold\nwith (  \n    location='https://awprojectstorageaccount.blob.core.windows.net/gold',\n    CREDENTIAL = cred_suhas\n    )\n\ncreate external file format format_parquet\nwith \n(\n    format_type = parquet,\n    DATA_COMPRESSION = 'org.apache.hadoop.io.compress.SnappyCodec'\n\n)\n\n-- cetas (create external table as select) -- table name external sales \ncreate external table gold.extsales\nWITH\n(location = 'extsales',\nDATA_SOURCE = source_gold,\nfile_format = format_parquet\n) as \nselect * from gold.sales\n\n\nselect * from gold.extsales",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "awdatabase",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
