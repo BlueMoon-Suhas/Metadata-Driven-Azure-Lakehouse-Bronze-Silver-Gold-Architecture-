@@ -122,7 +122,6 @@ CREATE VIEW gold.calendar AS SELECT \* FROM OPENROWSET( BULK
 -   Partitioned Parquet storage
 -   Delta Lake implementation
 -   Monitoring & logging framework
--   CI/CD automation
 
 ------------------------------------------------------------------------
 
