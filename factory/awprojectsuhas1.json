@@ -1,0 +1,9 @@
+{
+	"name": "awprojectsuhas1",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "03b1c7ab-fa41-438d-b1b3-3bca69d1506d",
+		"tenantId": "4cc2bd89-452a-43ba-9e9a-524858658b79"
+	}
+}
